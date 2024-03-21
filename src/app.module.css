@@ -1,0 +1,11 @@
+.wraper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px;
+  height: "100vh";
+}
+.title {
+  font-size: 30px;
+  color: rgb(31, 58, 149);
+  margin-bottom: 10px;
+}
