@@ -2,7 +2,7 @@ import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 import styles from "./contact-form.module.css";
 
@@ -25,6 +25,8 @@ const ContactsForm = () => {
   const contacts = useSelector((state) => state.contacts.items);
 
   const dispatch = useDispatch();
+
+  //dispatch(addContact()); - щоб провірити у Dev Tools чи працює
 
   //Перевіряємо на повтори контактів при введенні
   const isDublicate = ({ name, number }) => {
@@ -50,9 +52,10 @@ const ContactsForm = () => {
         `Contact with ${data.name} and ${data.number} already in list`
       );
     }
-    //dispatch відправляє action addContact - функцію, яка створює обєкт (import з contactsSlice.js) в reducer (описаний в contactsSlice.js), який потім обробляє action і змінює store
+    //dispatch відправляє результат операції addContact (це 3 екшени - pending,fulfilled,rejected) в extrareducers в contactsSlice.js), який потім обробляє action і змінює store
     dispatch(addContact(data));
   };
+
   return (
     <Formik
       initialValues={{

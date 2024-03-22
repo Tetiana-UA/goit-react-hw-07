@@ -1,14 +1,10 @@
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice.js";
+import { deleteContact } from "../../redux/contactsOps";
 
 import styles from "./contact.module.css";
 
 const Contact = ({ item }) => {
   const dispatch = useDispatch();
-  //видадення контакту (dispatch відправляє action deleteContact (import з contactsSlice.js) в store )
-  const onDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
 
   //відмальовуємо картку 1 контакту
   return (
@@ -16,8 +12,10 @@ const Contact = ({ item }) => {
       {item.name}: {item.number}
       <button
         className={styles.liButton}
-        onClick={() => onDeleteContact(item.id)}
-        //onClick={onDeleteContact}
+        //видадення контакту (dispatch відправляє результат операції deleteContact для обробки в extraRedusers в файлі contactsSlice.js)
+        onClick={() => {
+          dispatch(deleteContact(item.id));
+        }}
         type="button"
       >
         Delete

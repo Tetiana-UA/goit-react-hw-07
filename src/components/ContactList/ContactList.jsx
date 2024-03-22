@@ -27,13 +27,13 @@ const ContactsList = () => {
   // масив відфільтрованих контактів
 
   return (
-    <ol className={styles.list}>
+    <ul className={styles.list}>
       {items.map((item) => (
         <li key={item.id}>
           <Contact item={item} />
         </li>
       ))}
-    </ol>
+    </ul>
   );
 };
 
