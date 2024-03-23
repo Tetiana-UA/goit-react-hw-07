@@ -8,6 +8,7 @@ import ContactsList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import Loader from "./components/Loader/Loader";
 import Error from "./components/Error/Error";
+import { selectLoading, selectError } from "./redux/contactsSlice";
 
 import styles from "./app.module.css";
 
@@ -15,10 +16,11 @@ import styles from "./app.module.css";
 const App = () => {
   //const contacts = useSelector((state) => state.contacts.items);
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.contacts.loading);
-  const error = useSelector((state) => state.contacts.error);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
+    // викликаємо операцію (НТТР запит імпортований з contactOps.jsx) за допомогою dispatch -> результатом будуть 3 actions (action.pending, action.fullfiled, action.rejected), які будемо обробляти в extraReducers в слайсі contactsSlice
     dispatch(fetchContacts());
   }, [dispatch]);
 

@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
+import { selectVisibleContacts } from "../../redux/contactsSlice";
 
 import styles from "./contact-list.module.css";
 
 const ContactsList = () => {
-  const contacts = useSelector((state) => state.contacts.items);
+  /*const contacts = useSelector(selectContacts);
   const filter = useSelector((state) => state.filters.name);
-
   //фільтрація контактів за значенням фільтру
   const getFilteredContacts = () => {
     if (!filter) {
@@ -21,11 +21,12 @@ const ContactsList = () => {
     });
     return filteredContacts;
   };
+  const items = getFilteredContacts();*/
 
-  const items = getFilteredContacts();
+  //переробили фільтрацію за допомогою мемоїзованої функції (складного селектору, яка оголошена в contactsSlice-jsx)
+  const items = useSelector(selectVisibleContacts);
 
-  // масив відфільтрованих контактів
-
+  // відмальовуємо масив відфільтрованих контактів
   return (
     <ul className={styles.list}>
       {items.map((item) => (

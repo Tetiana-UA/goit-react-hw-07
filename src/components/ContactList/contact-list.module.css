@@ -1,9 +1,8 @@
 .list {
   width: 600px;
-  list-style-type: none;
+  list-style: none;
   margin-top: 10px;
   padding: 0;
-  list-style-type: circle;
 }
 .listLi {
   font-size: 25px;
